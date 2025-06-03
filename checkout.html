@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; background-color: #f4f4f4; color: #333; }
+        .container { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }
+        h1, h2 { color: #333; }
+        .order-summary, .payment-selection, .payment-details { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .order-summary h2, .payment-selection h2 { margin-top: 0; }
+        .total { font-weight: bold; font-size: 1.2em; text-align: right; }
+        .payment-option { margin-bottom: 10px; }
+        .payment-option label { display: flex; align-items: center; padding: 10px; background-color: #f9f9f9; border-radius: 5px; cursor: pointer; }
+        .payment-option input[type="radio"] { margin-right: 10px; }
+        .payment-option:hover label { background-color: #e9e9e9; }
+        .payment-option input[type="radio"]:checked + label { background-color: #ddeeff; border: 1px solid #99ccff; }
+        .qr-code-placeholder { width: 180px; height: 180px; background-color: #eee; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; text-align: center; margin: 15px auto; }
+        .instructions { font-size: 0.9em; color: #555; margin-top: 10px; }
+        .button { display: inline-block; padding: 12px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; border: none; cursor: pointer; font-size: 1em; text-align: center; }
+        .button:hover { background-color: #0056b3; }
+        .payment-details { display: none; /* Hidden by default, shown on selection */ }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Checkout</h1>
+
+    <div class="order-summary">
+        <h2>Order Summary</h2>
+        <p>Retro Sunglasses (1 x $225.00)</p>
+        <hr>
+        <p class="total">Total: $225.00</p>
+    </div>
+
+    <div class="payment-selection">
+        <h2>Select Payment Method</h2>
+        <div class="payment-option">
+            <input type="radio" id="aba_qr" name="payment_method" value="aba_qr" onclick="showPaymentDetails('aba')">
+            <label for="aba_qr">
+                <img src="https://www.abnamro.nl/origx/Logos/Paylogos/iDEAL/iDEAL-logo-kaartformaat-mobiel-betaalverzoek.png" alt="ABA QR Icon" style="width:24px; height:24px; margin-right: 8px; /* Replace with actual ABA icon */">
+                ABA Bank QR Code
+            </label>
+        </div>
+        <div class="payment-option">
+            <input type="radio" id="truemoney" name="payment_method" value="truemoney" onclick="showPaymentDetails('truemoney')">
+            <label for="truemoney">
+                 <img src="https://www.truemoney.com.kh/wp-content/themes/truemoney-UNSIGNED/media/logo_truemoney_old.png" alt="TrueMoney Icon" style="width:24px; height:24px; margin-right: 8px; /* Replace with actual TrueMoney icon */">
+                TrueMoney Wallet
+            </label>
+        </div>
+        </div>
+
+    <div id="aba-details" class="payment-details">
+        <h3>Pay with ABA QR</h3>
+        <div class="qr-code-placeholder">
+            [Your Dynamically Generated ABA QR Code Would Appear Here]
+        </div>
+        <p class="instructions">
+            1. Open your ABA Mobile app.<br>
+            2. Tap on "Scan QR".<br>
+            3. Scan the QR code above.<br>
+            4. Verify the amount ($225.00) and confirm the payment.
+        </p>
+        <button class="button" onclick="handlePaymentAction('aba')">Waiting for Payment...</button>
+        <p class="instructions">Once paid, the status will update automatically, or click the button if you've completed the payment.</p>
+    </div>
+
+    <div id="truemoney-details" class="payment-details">
+        <h3>Pay with TrueMoney</h3>
+        <p class="instructions">
+            You will be redirected to TrueMoney to complete your payment securely.
+        </p>
+        <button class="button" onclick="handlePaymentAction('truemoney')">Proceed to TrueMoney</button>
+        <p class="instructions">Alternatively, if TrueMoney provides an API for direct input: Enter your TrueMoney phone number to receive a payment request.</p>
+        </div>
+
+</div>
+
+<script>
+    function showPaymentDetails(method) {
+        document.getElementById('aba-details').style.display = 'none';
+        document.getElementById('truemoney-details').style.display = 'none';
+
+        if (method === 'aba') {
+            document.getElementById('aba-details').style.display = 'block';
+            // In a real scenario, you would now request the QR code from your backend.
+            console.log('ABA QR selected. Backend would generate and provide QR code.');
+        } else if (method === 'truemoney') {
+            document.getElementById('truemoney-details').style.display = 'block';
+            console.log('TrueMoney selected. User would be redirected or use TrueMoney API.');
+        }
+    }
+
+    function handlePaymentAction(method) {
+        if (method === 'aba') {
+            // This button might poll backend for payment status or just be informational
+            alert('Conceptual: Checking ABA payment status with backend...');
+            // In a real app: This would typically involve your backend checking ABA's callback/webhook for payment confirmation.
+        } else if (method === 'truemoney') {
+            alert('Conceptual: Redirecting to TrueMoney or initiating payment via TrueMoney API...');
+            // In a real app: This would redirect the user to TrueMoney's payment page,
+            // or make an API call to TrueMoney via your backend.
+        }
+    }
+</script>
+
+</body>
+</html>
