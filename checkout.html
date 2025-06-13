@@ -40,14 +40,16 @@
         <div class="payment-option">
             <input type="radio" id="aba_qr" name="payment_method" value="aba_qr" onclick="showPaymentDetails('aba')">
             <label for="aba_qr">
-                <img src="https://www.abnamro.nl/origx/Logos/Paylogos/iDEAL/iDEAL-logo-kaartformaat-mobiel-betaalverzoek.png" alt="ABA QR Icon" style="width:24px; height:24px; margin-right: 8px; /* Replace with actual ABA icon */">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ABA" alt="ABA QR Icon" 
+                    style="width:24px; height:24px; margin-right: 8px; /* Replace with actual ABA icon */">
                 ABA Bank QR Code
             </label>
         </div>
         <div class="payment-option">
             <input type="radio" id="truemoney" name="payment_method" value="truemoney" onclick="showPaymentDetails('truemoney')">
             <label for="truemoney">
-                 <img src="https://www.truemoney.com.kh/wp-content/themes/truemoney-UNSIGNED/media/logo_truemoney_old.png" alt="TrueMoney Icon" style="width:24px; height:24px; margin-right: 8px; /* Replace with actual TrueMoney icon */">
+                 <img src="https://quickchart.io/qr?text=true%20money&dark=f69f09&size=200" alt="TrueMoney Icon"
+                     style="width:24px; height:24px; margin-right: 8px; /* Replace with actual TrueMoney icon */">
                 TrueMoney Wallet
             </label>
         </div>
@@ -55,22 +57,32 @@
 
     <div id="aba-details" class="payment-details">
         <h3>Pay with ABA QR</h3>
-        <div class="qr-code-placeholder">
-            [Your Dynamically Generated ABA QR Code Would Appear Here]
-        </div>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ABA" alt="ABA Bank QR code for payment, black and white square pattern with the text ABA encoded, displayed in the checkout payment section of an online clothing store" class="payment-icon" style="display:block; margin:0 auto 10px;">
+    
         <p class="instructions">
             1. Open your ABA Mobile app.<br>
             2. Tap on "Scan QR".<br>
             3. Scan the QR code above.<br>
-            4. Verify the amount ($225.00) and confirm the payment.
+           
         </p>
         <button class="button" onclick="handlePaymentAction('aba')">Waiting for Payment...</button>
         <p class="instructions">Once paid, the status will update automatically, or click the button if you've completed the payment.</p>
+            
     </div>
+     
 
     <div id="truemoney-details" class="payment-details">
         <h3>Pay with TrueMoney</h3>
         <p class="instructions">
+            <img src="https://quickchart.io/qr?text=true%20money&dark=f69f09&size=200" alt="ABA Bank QR code for payment, black and white square pattern with the text ABA encoded, displayed in the checkout payment section of an online clothing store" class="payment-icon" style="display:block; margin:0 auto 10px;">
+    
+        <p class="instructions">
+            1. Open your ABA Mobile app.<br>
+            2. Tap on "Scan QR".<br>
+            3. Scan the QR code above.<br>
+           
+        </p>
+        
             You will be redirected to TrueMoney to complete your payment securely.
         </p>
         <button class="button" onclick="handlePaymentAction('truemoney')">Proceed to TrueMoney</button>

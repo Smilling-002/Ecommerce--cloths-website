@@ -112,6 +112,7 @@ input[type=number]::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+   appearance: textfield; 
 }
 #btn_add{
     background-color: #000;
@@ -158,5 +159,15 @@ input[type=number] {
 .success-msg h4{
     font-size: 14px;
     font-weight: 400;
+}
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
 }
 
